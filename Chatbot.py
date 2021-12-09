@@ -1,6 +1,6 @@
 import random
 
-# This list contains the random responses
+# This list contains the random responses...
 random_responses = ["That is so interesting, please tell me more.",
                    "I see, keep on!",
                    "Why do you say that?",
@@ -23,4 +23,4 @@ while True:
         response = random.choices(random_responses)[0]
     print(response)
 
-print("It was nice talking to you, goodbye!")
+print("It was nice talking to you, goodbye my friend!")
