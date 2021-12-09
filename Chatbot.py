@@ -1,6 +1,6 @@
 import random
 
-# This list contains the random responses...
+# This list contains the random responses
 random_responses = ["That is so interesting, please tell me more.",
                    "I see, keep on!",
                    "Why do you say that?",
