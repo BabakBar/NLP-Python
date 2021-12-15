@@ -1,3 +1,7 @@
+
+from textblob import TextBlob
+
+
 import random
 
 # This list contains the random responses
@@ -21,6 +25,8 @@ while True:
         break
     else:
         response = random.choices(random_responses)[0]
-    print(response)
 
+if__name__ = __"main"__:
+
+    print(response)
 print("It was nice talking to you, goodbye my friend!")
