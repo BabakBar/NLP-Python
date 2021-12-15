@@ -1,34 +1,28 @@
-def find_left_boundary(a, key):
-        lo, hi = 0, len(a) - 1
+#Binary Search
 
-        while lo <= hi:
-            mid = lo + (hi - lo) // 2
-            if key <= a[mid]:
-                hi = mid - 1
-            else:
-                lo = mid + 1
-
-        return lo if 0 <= lo < len(a) and a[lo] == key else -1
+def binary_search(list, target):
+    first, last = 0, len(list) - 1
+    
+    while first <= last:
+        mid = (first + last) // 2
         
-def find_right_boundary(a, key):
-        lo, hi = 0, len(a) - 1
+        if list[mid] == target:
+            return mid
+        elif list[mid] < target:
+            first = mid + 1
+        else: 
+            last = mid - 1 
 
-        while lo <= hi:
-            mid = lo + (hi - lo) // 2
-            if key < a[mid]:
-                hi = mid - 1
-            else:
-                lo = mid + 1
+    return None
 
-        return hi if 0 <= hi < len(a) and a[hi] == key else -1
-
-def searchRange(a, key):
-        return [find_left_boundary(a, key),find_right_boundary(a, key)]
-
- #why i need this in vscode   
 if __name__ == "__main__":
     
-    key = [5,7,7,8,8,10]
-    result = searchRange(key, 8)
-    print(result)
-    
+    def verify(ind):
+        if ind is not None:
+            print("Found:", ind)
+        else:
+            print("Not F")
+
+nums = [1,2,3,4,5]
+result = binary_search(nums, 3)
+verify(result)
