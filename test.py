@@ -1,5 +1,5 @@
 #Binary Search
-
+#check commit
 def binary_search(list, target):
     first, last = 0, len(list) - 1
     
@@ -19,7 +19,7 @@ if __name__ == "__main__":
     
     def verify(ind):
         if ind is not None:
-            print("Found:", ind)
+            print("Found the number:", ind)
         else:
             print("Not F")
 
