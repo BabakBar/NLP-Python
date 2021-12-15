@@ -24,7 +24,8 @@ def find_right_boundary(a, key):
 
 def searchRange(a, key):
         return [find_left_boundary(a, key),find_right_boundary(a, key)]
-    
+
+ #why i need this in vscode   
 if __name__ == "__main__":
     
     key = [5,7,7,8,8,10]
