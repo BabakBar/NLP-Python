@@ -95,3 +95,45 @@ test_dataset = tf.data.Dataset.from_tensor_slices((test_images, test_labels))
 # we generally want the pixel values of our training 
 # data to be floating-point numbers between 0 and 1, 
 # so we convert them in the following way:
+#%%
+train_dataset = train_dataset.map(lambda image, label: (float(image) / 255.0, label))
+test_dataset = test_dataset.map(lambda image, label: (float(image) / 255.0, label))
+# %%
+#You may have noticed that each value returned by the 
+# Dataset is a tuple containing an image and a label. 
+# We divide each value in the image by 255, and we keep 
+# the label as is. Let's inspect the values of the same 
+# image we inspected earlier, to see the difference.
+
+# %%
+train_dataset.as_numpy_iterator().next()[0]
+# %%
+#As expected, the pixel values are now floating-point numbers 
+# between 0 and 1.
+
+#Notice that now that we have a Dataset, 
+# we can no longer index it the same way as a NumPy array. 
+# Instead, we get an iterator by calling the as_numpy_iterator 
+# method, and we advance it by calling its next method. 
+# At this point, we have a tuple containing an image and 
+# the corresponding label, so we can get the element at 
+# index 0 to inspect the image.
+
+#Finally, we tell the Dataset to give us batches of 
+# data of size 64, and we shuffle the data:
+
+# %%
+batch_size = 64
+train_dataset = train_dataset.batch(batch_size).shuffle(500)
+test_dataset = test_dataset.batch(batch_size).shuffle(500)
+# %%
+#By specifying the batch size, we're telling the Dataset 
+# that when we iterate over it, we want to receive not one, 
+# but a batch of 64 items instead. If we print the length of 
+# the first item returned by the iterator, we'll see that we 
+# in fact get 64.
+
+
+# %%
+len(train_dataset.as_numpy_iterator().next()[0])
+# %%
