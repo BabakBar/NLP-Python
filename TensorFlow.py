@@ -40,30 +40,30 @@ labels_map = {
 (training_images, training_labels), (test_images, test_labels) = tf.keras.datasets.fashion_mnist.load_data()
 
 def read_images(path: str, image_size: int, num_items: int) -> np.ndarray:
-  with gzip.open(path, 'rb') as file:
-    data = np.frombuffer(file.read(), np.uint8, offset=16)
-    data = data.reshape(num_items, image_size, image_size)
-  return data
+      with gzip.open(path,'rb') as file:
+        data = np.frombuffer(file.read(), np.uint8, offset = 16)
+        data = data.reshape(num_items, image_size, image_size)
+        return data
 
 def read_labels(path: str, num_items: int) -> np.ndarray:
-  with gzip.open(path, 'rb') as file:
-    data = np.frombuffer(file.read(num_items + 8), np.uint8, offset=8)
-    data = data.astype(np.int64)
-  return data
+      with gzip.open(path, 'rb') as file:
+        data = np.frombuffer(file.read(num_items + 8), np.uint8, offset=8)
+        data = data.astype(np.int64)
+        return data
 
 image_size = 28
 num_train = 60000
 num_test = 10000
 
-training_images = read_images('data/FashionMNIST/raw/train-images-idx3-ubyte.gz', image_size, num_train)
-test_images = read_images('data/FashionMNIST/raw/t10k-images-idx3-ubyte.gz', image_size, num_test)
+training_images = read_images("Users/Sia/NLP-Python/NLP-Python/train-images-idx3-ubyte.gz", image_size, num_train)
+test_images = read_images('Users/Sia/NLP-Python/NLP-Python/t10k-images-idx3-ubyte.gz', image_size, num_test)
 training_labels = read_labels('data/FashionMNIST/raw/train-labels-idx1-ubyte.gz', num_train)
 test_labels = read_labels('data/FashionMNIST/raw/t10k-labels-idx1-ubyte.gz', num_test)
 #%%
 import random
 import matplotlib.pyplot as plt
 
-figure = plt.figure(figsize=(7, 7))
+figure = plt.figure(figsize=(8, 8))
 cols = 3
 rows = 3
 for i in range(1, cols * rows + 1):
