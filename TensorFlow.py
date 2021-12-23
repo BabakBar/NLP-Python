@@ -187,7 +187,7 @@ model.summary()
 # Train & Test the NN
 
 
-
+from kintro import *
 #%%
 def get_data(batch_size: int) -> Tuple[tf.data.Dataset, tf.data.Dataset]:
   image_size = 28
