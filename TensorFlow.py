@@ -127,4 +127,27 @@ len(train_dataset.as_numpy_iterator().next()[0])
 # input a matrix of shape (28, 28) and output a vector of size 10, 
 # where the index of the largest value in the output corresponds to
 # the integer label for the class of clothing in the image.
+
+# %%
+#Because each image has 28 × 28 = 784 pixels, 
+# we need 784 nodes in the input layer (one for each pixel value).
+#  We decided to add one hidden layer with 20 nodes and a 
+# ReLU (rectified linear unit) activation function. 
+# We want the output of our network to be a vector of size 10, 
+# therefore our output layer needs to have 10 nodes.
+
+# Here's the Keras code that defines this neural network:
+#%%
+class NeuralNetwork(tf.keras.Model):
+  def __init__(self):
+    super(NeuralNetwork, self).__init__()
+    self.sequence = tf.keras.Sequential([
+      tf.keras.layers.Flatten(input_shape=(28, 28)),
+      tf.keras.layers.Dense(20, activation='relu'),
+      tf.keras.layers.Dense(10)
+    ])
+
+  def call(self, x: tf.Tensor) -> tf.Tensor:
+    y_prime = self.sequence(x)
+    return y_prime
 # %%
