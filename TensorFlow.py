@@ -74,7 +74,8 @@ plt.show()
 # data in a Dataset in this sample, so you're prepared to 
 # work with large data in the future.
 
-
+train_dataset = tf.data.Dataset.from_tensor_slices((train_images, train_labels))
+test_dataset = tf.data.Dataset.from_tensor_slices((test_images, test_labels))
 
 # %%
 #You saw earlier that each pixel of the image is 
@@ -91,11 +92,12 @@ plt.show()
 # image we inspected earlier, to see the difference.
 
 # %%
-
+train_dataset = train_dataset.map(lambda image, label: (float(image) / 255.0, label))
+test_dataset = test_dataset.map(lambda image, label: (float(image) / 255.0, label))
 # %%
 #As expected, the pixel values are now floating-point numbers 
 # between 0 and 1.
-
+train_dataset.as_numpy_iterator().next()[0]
 #Notice that now that we have a Dataset, 
 # we can no longer index it the same way as a NumPy array. 
 # Instead, we get an iterator by calling the as_numpy_iterator 
@@ -109,6 +111,8 @@ plt.show()
 
 # %%
 batch_size = 64
+train_dataset = train_dataset.batch(batch_size).shuffle(500)
+test_dataset = test_dataset.batch(batch_size).shuffle(500)
 
 # %%
 #By specifying the batch size, we're telling the Dataset 
@@ -116,7 +120,7 @@ batch_size = 64
 # but a batch of 64 items instead. If we print the length of 
 # the first item returned by the iterator, we'll see that we 
 # in fact get 64.
-
+len(train_dataset.as_numpy_iterator().next()[0])
 
 # %%
 
