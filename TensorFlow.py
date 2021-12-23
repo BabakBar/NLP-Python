@@ -46,29 +46,11 @@ test_file  = "/Users/Sia/NLP-Python/fashion-mnist_test.csv"
 train_data = pd.read_csv(train_file)
 test_data = pd.read_csv(test_file)
 #%%
-(training_images, training_labels), (test_images, test_labels) = tf.keras.datasets.fashion_mnist.load_data()
+fashion_mnist = tf.keras.datasets.fashion_mnist
 
-def read_images(path: str, image_size: int, num_items: int) -> np.ndarray:
-    with gzip.open(path, 'rb') as file:
-        data = np.frombuffer(file.read(), np.uint8, offset=16)
-        data = data.reshape(num_items, image_size, image_size)
-    return data
+(train_images, train_labels),(test_images, test_labels) = fashion_mnist.load_data()
+print(len(train_images))
 
-def read_labels(path: str, num_items: int) -> np.ndarray:
-    with gzip.open(path, 'rb') as file:
-        data = np.frombuffer(file.read(num_items + 8), np.uint8, offset=8)
-        data = data.astype(np.int64)
-    return data
-
-
-image_size = 28
-num_train = 60000
-num_test = 10000
-
-training_images = pd.read_csv('/Users/Sia/NLP-Python/train-images-idx3-ubyte.gz', image_size, num_train)
-test_images = pd.read_csv('/Users/Sia/NLP-Python/t10k-images-idx3-ubyte.gz', image_size, num_test)
-training_labels = pd.read_csv('/Users/Sia/NLP-Python/train-labels-idx1-ubyte.gz', num_train)
-test_labels = pd.read_csv('/Users/Sia/NLP-Python/t10k-labels-idx1-ubyte.gz', num_test)
 #%%
 cwd = os.getcwd()  # Get the current working directory (cwd)
 files = os.listdir(cwd)  # Get all the files in that directory
