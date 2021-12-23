@@ -71,8 +71,7 @@ plt.show()
 # we would need to wrap it in a tf.data.Dataset instance, 
 # which handles large data better by making it easy to keep 
 # just a portion of it in memory. We've decided to wrap our 
-# data in a Dataset in this sample, so you're prepared to 
-# work with large data in the future.
+# data in a Dataset in this sample.
 
 train_dataset = tf.data.Dataset.from_tensor_slices((train_images, train_labels))
 test_dataset = tf.data.Dataset.from_tensor_slices((test_images, test_labels))
