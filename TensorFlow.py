@@ -40,30 +40,14 @@ labels_map = {
   9: 'Ankle Boot',
 }
 #%%
-train_file = "/Users/Sia/NLP-Python/fashion-mnist_train.csv"
-test_file  = "/Users/Sia/NLP-Python/fashion-mnist_test.csv"
-
-train_data = pd.read_csv(train_file)
-test_data = pd.read_csv(test_file)
-#%%
 fashion_mnist = tf.keras.datasets.fashion_mnist
 
 (train_images, train_labels),(test_images, test_labels) = fashion_mnist.load_data()
 print(len(train_images))
 
-#%%
-cwd = os.getcwd()  # Get the current working directory (cwd)
-files = os.listdir(cwd)  # Get all the files in that directory
-print("Files in %r: %s" % (cwd, files))
-
 image_size = 28
 num_train = 60000
 num_test = 10000
-
-training_images
-test_images
-training_labels
-test_labels = ('data/FashionMNIST/raw/t10k-labels-idx1-ubyte.gz', num_test)
 #%%
 import random
 import matplotlib.pyplot as plt
@@ -72,9 +56,9 @@ figure = plt.figure(figsize=(8, 8))
 cols = 3
 rows = 3
 for i in range(1, cols * rows + 1):
-  sample_idx = random.randint(0, len(training_images))
-  image = training_images[sample_idx]
-  label = training_labels[sample_idx]
+  sample_idx = random.randint(0, len(train_images))
+  image = train_images[sample_idx]
+  label = train_labels[sample_idx]
   figure.add_subplot(rows, cols, i)
   plt.title(labels_map[label])
   plt.axis('off')
@@ -91,18 +75,14 @@ plt.show()
 # work with large data in the future.
 
 
-# %%
-train_dataset = tf.data.Dataset.from_tensor_slices((training_images, training_labels))
-test_dataset = tf.data.Dataset.from_tensor_slices((test_images, test_labels))
+
 # %%
 #You saw earlier that each pixel of the image is 
 # represented by an unsigned int. In machine learning, 
 # we generally want the pixel values of our training 
 # data to be floating-point numbers between 0 and 1, 
 # so we convert them in the following way:
-#%%
-train_dataset = train_dataset.map(lambda image, label: (float(image) / 255.0, label))
-test_dataset = test_dataset.map(lambda image, label: (float(image) / 255.0, label))
+
 # %%
 #You may have noticed that each value returned by the 
 # Dataset is a tuple containing an image and a label. 
@@ -111,7 +91,7 @@ test_dataset = test_dataset.map(lambda image, label: (float(image) / 255.0, labe
 # image we inspected earlier, to see the difference.
 
 # %%
-train_dataset.as_numpy_iterator().next()[0]
+
 # %%
 #As expected, the pixel values are now floating-point numbers 
 # between 0 and 1.
@@ -129,8 +109,7 @@ train_dataset.as_numpy_iterator().next()[0]
 
 # %%
 batch_size = 64
-train_dataset = train_dataset.batch(batch_size).shuffle(500)
-test_dataset = test_dataset.batch(batch_size).shuffle(500)
+
 # %%
 #By specifying the batch size, we're telling the Dataset 
 # that when we iterate over it, we want to receive not one, 
@@ -140,5 +119,5 @@ test_dataset = test_dataset.batch(batch_size).shuffle(500)
 
 
 # %%
-len(train_dataset.as_numpy_iterator().next()[0])
+
 # %%
