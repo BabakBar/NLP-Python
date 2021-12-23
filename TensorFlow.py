@@ -1,6 +1,7 @@
 # %%
 msg = "Tensor with Mic"
 print(msg)
+print(msg)
 
 # %% [markdown]
 # Keras, is a higher-level and user-friendly API that is released as part of TensorFlow.
@@ -14,8 +15,10 @@ print(msg)
 import os 
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 import tensorflow as tf
-import gzip
 import numpy as np
+import pandas as pd
+from tensorflow.keras import datasets
+print("Tensorflow version: {}".format(tf.__version__))
 # %% [markdown]
 #the Fashion MNIST dataset. This dataset contains 70,000 grayscale 
 # images of articles of clothing — 60,000 training and 10,000 for testing. 
@@ -37,28 +40,33 @@ labels_map = {
   9: 'Ankle Boot',
 }
 #%%
+train_file = "/Users/Sia/NLP-Python/fashion-mnist_train.csv"
+test_file  = "/Users/Sia/NLP-Python/fashion-mnist_test.csv"
+
+train_data = pd.read_csv(train_file)
+test_data = pd.read_csv(test_file)
+#%%
 (training_images, training_labels), (test_images, test_labels) = tf.keras.datasets.fashion_mnist.load_data()
 
-def read_images(path: str, image_size: int, num_items: int) -> np.ndarray:
-      with gzip.open(path,'rb') as file:
-        data = np.frombuffer(file.read(), np.uint8, offset = 16)
-        data = data.reshape(num_items, image_size, image_size)
-        return data
 
-def read_labels(path: str, num_items: int) -> np.ndarray:
-      with gzip.open(path, 'rb') as file:
-        data = np.frombuffer(file.read(num_items + 8), np.uint8, offset=8)
-        data = data.astype(np.int64)
-        return data
+
+
+image_size = 28
+num_train = 60000
+num_test = 10000
+#%%
+cwd = os.getcwd()  # Get the current working directory (cwd)
+files = os.listdir(cwd)  # Get all the files in that directory
+print("Files in %r: %s" % (cwd, files))
 
 image_size = 28
 num_train = 60000
 num_test = 10000
 
-training_images = read_images("Users/Sia/NLP-Python/NLP-Python/train-images-idx3-ubyte.gz", image_size, num_train)
-test_images = read_images('Users/Sia/NLP-Python/NLP-Python/t10k-images-idx3-ubyte.gz', image_size, num_test)
-training_labels = read_labels('data/FashionMNIST/raw/train-labels-idx1-ubyte.gz', num_train)
-test_labels = read_labels('data/FashionMNIST/raw/t10k-labels-idx1-ubyte.gz', num_test)
+training_images
+test_images
+training_labels
+test_labels = ('data/FashionMNIST/raw/t10k-labels-idx1-ubyte.gz', num_test)
 #%%
 import random
 import matplotlib.pyplot as plt
