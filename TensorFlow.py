@@ -77,27 +77,26 @@ train_dataset = tf.data.Dataset.from_tensor_slices((train_images, train_labels))
 test_dataset = tf.data.Dataset.from_tensor_slices((test_images, test_labels))
 
 # %%
-#You saw earlier that each pixel of the image is 
+#we saw earlier that each pixel of the image is 
 # represented by an unsigned int. In machine learning, 
 # we generally want the pixel values of our training 
 # data to be floating-point numbers between 0 and 1, 
 # so we convert them in the following way:
-
+train_dataset = train_dataset.map(lambda image, label: (float(image) / 255.0, label))
+test_dataset = test_dataset.map(lambda image, label: (float(image) / 255.0, label))
 # %%
-#You may have noticed that each value returned by the 
+#we may have noticed that each value returned by the 
 # Dataset is a tuple containing an image and a label. 
 # We divide each value in the image by 255, and we keep 
 # the label as is. Let's inspect the values of the same 
 # image we inspected earlier, to see the difference.
 
-# %%
-train_dataset = train_dataset.map(lambda image, label: (float(image) / 255.0, label))
-test_dataset = test_dataset.map(lambda image, label: (float(image) / 255.0, label))
+train_dataset.as_numpy_iterator().next()[0]
 # %%
 #As expected, the pixel values are now floating-point numbers 
 # between 0 and 1.
-train_dataset.as_numpy_iterator().next()[0]
-#Notice that now that we have a Dataset, 
+
+#Ntice that now thato we have a Dataset, 
 # we can no longer index it the same way as a NumPy array. 
 # Instead, we get an iterator by calling the as_numpy_iterator 
 # method, and we advance it by calling its next method. 
@@ -122,5 +121,5 @@ test_dataset = test_dataset.batch(batch_size).shuffle(500)
 len(train_dataset.as_numpy_iterator().next()[0])
 
 # %%
-
+# Start NN architecture
 # %%
