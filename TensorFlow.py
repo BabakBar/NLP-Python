@@ -17,6 +17,7 @@ import tensorflow as tf
 import numpy as np
 import gzip
 import pandas as pd
+from typing import Tuple
 from tensorflow.keras import datasets
 print("Tensorflow version: {}".format(tf.__version__))
 # %% [markdown]
@@ -184,3 +185,24 @@ model.summary()
 # to train the neural network using that data.
 #%%
 # Train & Test the NN
+
+
+
+#%%
+def get_data(batch_size: int) -> Tuple[tf.data.Dataset, tf.data.Dataset]:
+  image_size = 28
+  num_train = 60000
+  num_test = 10000
+
+learning_rate = 0.1
+batch_size = 64
+
+(train_dataset, test_dataset) = get_data(batch_size)
+
+model = NeuralNetwork()
+
+loss_fn = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True)
+optimizer = tf.keras.optimizers.SGD(learning_rate)
+metrics = ['accuracy']
+model.compile(optimizer, loss_fn, metrics)
+# %%
