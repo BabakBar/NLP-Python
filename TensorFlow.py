@@ -151,3 +151,34 @@ class NeuralNetwork(tf.keras.Model):
     y_prime = self.sequence(x)
     return y_prime
 # %%
+#The Flatten layer turns our input matrix of shape (28, 28) 
+# into a vector of size 728. The Dense layers are also known as 
+# "fully connected" or "linear" layers because they connect all 
+# nodes from the previous layer with each of their own 
+# nodes using a linear function. Notice that they specify "ReLU" 
+# as the activation — that's because we want the results of the 
+# linear mathematical operation to get passed as input to a 
+# "Rectified Linear Unit" function, which adds non-linearity to 
+# the calculations.
+
+#It's important to have non-linear activation functions 
+# (like the ReLU function) between linear layers, because
+#  otherwise a sequence of linear layers would be mathematically 
+# equivalent to just one layer. These activation functions 
+# give our network more expressive power, allowing it to 
+# approximate non-linear relationships between data.
+
+#The Sequential class combines all the other layers. Lastly, 
+# we define the call method, which supplies a tensor x as input 
+# to the sequence of layers and produces the y_prime vector as 
+# a result.
+
+#We can print a description of our model using the summary method:
+#%%
+model = NeuralNetwork()
+model.build((1, 28, 28))
+model.summary()
+# %%
+#This is all the code needed to define our neural network. 
+# Now that we have a neural network and some data, it's time
+# to train the neural network using that data.
