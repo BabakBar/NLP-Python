@@ -182,3 +182,5 @@ model.summary()
 #This is all the code needed to define our neural network. 
 # Now that we have a neural network and some data, it's time
 # to train the neural network using that data.
+#%%
+# Train & Test the NN
