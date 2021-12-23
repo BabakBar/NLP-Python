@@ -122,4 +122,9 @@ len(train_dataset.as_numpy_iterator().next()[0])
 
 # %%
 # Start NN architecture
+#Our goal is to classify an input image into one of the 10 classes 
+# of clothing, so we will define our neural network to take as 
+# input a matrix of shape (28, 28) and output a vector of size 10, 
+# where the index of the largest value in the output corresponds to
+# the integer label for the class of clothing in the image.
 # %%
