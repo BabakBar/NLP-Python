@@ -189,11 +189,6 @@ model.summary()
 
 from kintro import *
 #%%
-def get_data(batch_size: int) -> Tuple[tf.data.Dataset, tf.data.Dataset]:
-  image_size = 28
-  num_train = 60000
-  num_test = 10000
-
 learning_rate = 0.1
 batch_size = 64
 
