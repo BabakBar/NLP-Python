@@ -1,7 +1,6 @@
 # %%
 msg = "Tensor with Mic"
 print(msg)
-print(msg)
 
 # %% [markdown]
 # Keras, is a higher-level and user-friendly API that is released as part of TensorFlow.
