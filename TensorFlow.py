@@ -241,3 +241,12 @@ plt.axis('off')
 plt.imshow(X.squeeze(), cmap='gray')
 plt.show()
 # %%
+#In the code below, we load the image, call predict to get its class index, 
+# and map that index to the class name.
+
+predicted_vector = model.predict(X)
+predicted_index = np.argmax(predicted_vector)
+predicted_name = labels_map[predicted_index]
+
+print(f'Predicted class: {predicted_name}')
+# %%
