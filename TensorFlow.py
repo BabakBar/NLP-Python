@@ -185,7 +185,7 @@ model.summary()
 # to train the neural network using that data.
 #%%
 # Train & Test the NN
-
+# visit https://docs.microsoft.com/en-us/learn/modules/intro-machine-learning-keras/4-train
 
 from kintro import *
 #%%
