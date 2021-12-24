@@ -221,4 +221,5 @@ print(f'\nTest accuracy: {test_accuracy * 100:>0.1f}%, test loss: {test_loss:>8f
 
 model.save('outputs/model')
 # %%
-#Now that our neural network has appropriate values for its parameters, we can use it to make a prediction.
+#Now that our neural network has appropriate values for its parameters, 
+# we can use it to make a prediction.
