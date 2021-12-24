@@ -211,4 +211,14 @@ print('\nFitting:')
 model.fit(train_dataset, epochs=epochs)
 # %%
 # test model
-# 
+print('\nEvaluating:')
+(test_loss, test_accuracy) = model.evaluate(test_dataset)
+print(f'\nTest accuracy: {test_accuracy * 100:>0.1f}%, test loss: {test_loss:>8f}')
+# %%
+#We've achieved pretty good test accuracy, considering that we used 
+# such a simple network and only five epochs of training. 
+# We're done with training and can now save the model.
+
+model.save('outputs/model')
+# %%
+#Now that our neural network has appropriate values for its parameters, we can use it to make a prediction.
