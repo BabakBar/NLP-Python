@@ -192,8 +192,6 @@ from kintro import *
 learning_rate = 0.1
 batch_size = 64
 
-(train_dataset, test_dataset) = get_data(batch_size)
-
 model = NeuralNetwork()
 
 loss_fn = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True)
@@ -202,3 +200,15 @@ metrics = ['accuracy']
 model.compile(optimizer, loss_fn, metrics)
 # %%
 #start over
+# Now that we've configured our model with the parameters we need 
+# for training, we can call fit to train the model. We specify the 
+# number of epochs as 5, which means that we want to iterate over 
+# the complete set of 60,000 training images five times while 
+# training the neural network.
+
+epochs = 5
+print('\nFitting:')
+model.fit(train_dataset, epochs=epochs)
+# %%
+# test model
+# 
