@@ -201,3 +201,4 @@ optimizer = tf.keras.optimizers.SGD(learning_rate)
 metrics = ['accuracy']
 model.compile(optimizer, loss_fn, metrics)
 # %%
+#start over
