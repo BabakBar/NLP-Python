@@ -18,6 +18,9 @@ import numpy as np
 import gzip
 import pandas as pd
 from typing import Tuple
+import requests
+from PIL import Image
+import matplotlib.pyplot as plt
 from tensorflow.keras import datasets
 print("Tensorflow version: {}".format(tf.__version__))
 # %% [markdown]
@@ -223,3 +226,18 @@ model.save('outputs/model')
 # %%
 #Now that our neural network has appropriate values for its parameters, 
 # we can use it to make a prediction.
+#Assuming we achieved pretty good accuracy during the training and testing phases, we can now use the trained model for inference — in other words, to predict the
+# classification of images that the network has never seen before.
+#Making a prediction is easy — we simply call the model's predict method and pass one or more images. Let's start by geting 
+# the image we'll use for prediction, and let's display it:
+#%%
+url = 'https://raw.githubusercontent.com/MicrosoftDocs/tensorflow-learning-path/main/intro-keras/predict-image.png'
+
+with Image.open(requests.get(url, stream=True).raw) as image:
+  X = np.asarray(image, dtype=np.float32).reshape((-1, 28, 28)) / 255.0
+
+plt.figure()
+plt.axis('off')
+plt.imshow(X.squeeze(), cmap='gray')
+plt.show()
+# %%
