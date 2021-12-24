@@ -250,3 +250,9 @@ predicted_name = labels_map[predicted_index]
 
 print(f'Predicted class: {predicted_name}')
 # %%
+#Note that you can also get probabilities of the input image being of a certain class, in which case we need to normalize the output of our network using softmax 
+# to get probabilities. Here are the predictions for our image:
+
+probs = tf.nn.softmax(predicted_vector.reshape((-1,)))
+for i,p in enumerate(probs):
+    print(f'{labels_map[i]} -> {p:.3f}')
